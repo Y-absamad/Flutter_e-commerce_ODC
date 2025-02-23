@@ -5,13 +5,16 @@ class CustomTextInput extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
   final bool isPassword;
+  final IconData? iconData;
 
-  const CustomTextInput(
-      {super.key,
-      required this.hintText,
-      required this.labelText,
-      required this.controller,
-      this.isPassword = false});
+  const CustomTextInput({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    required this.controller,
+    this.isPassword = false,
+    this.iconData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,9 @@ class CustomTextInput extends StatelessWidget {
         TextField(
           controller: controller,
           obscureText: isPassword,
+          
           decoration: InputDecoration(
+            suffixIcon: Icon(iconData),
             hintText: hintText,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
