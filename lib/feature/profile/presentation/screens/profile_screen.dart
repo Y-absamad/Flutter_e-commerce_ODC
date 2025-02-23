@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/payment_method.dart';
+import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/privacy_policy.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -70,7 +71,9 @@ class ProfileScreen extends StatelessWidget {
             SettingsTile(
               icon: Icons.privacy_tip,
               title: "Privacy Policy",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PrivacyPolicy() ));
+              },
             ),
             SettingsTile(
               icon: Icons.help,

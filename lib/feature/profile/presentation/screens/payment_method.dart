@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_odc/core/widgets/custom_button.dart';
+import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/add_new_card.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PaymentMethod extends StatelessWidget {
@@ -63,7 +64,12 @@ class PaymentMethod extends StatelessWidget {
                                   visaPass:
                                       'Pay with your Visa or Mastercard '),
                               Spacer(),
-                              CustomButton(label: 'Continue', onPressed: () {}),
+                              CustomButton(
+                                label: 'Continue',
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddNewCard()));
+                                },
+                              ),
                               Spacer(),
                             ],
                           ),
