@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:flutter_ecommerce_odc/feature/profile/presentation/screens/payment_method.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -42,7 +43,9 @@ class ProfileScreen extends StatelessWidget {
             SettingsTile(
               icon: Icons.payment,
               title: "Payment Method",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentMethod() ));
+              },
             ),
             SettingsTile(
               icon: Icons.notifications,
