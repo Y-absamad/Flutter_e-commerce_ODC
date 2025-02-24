@@ -97,8 +97,5 @@ class HomeCubit extends Cubit<HomeState> {
     }).catchError((error) {
       emit(ProductDetailsError(error.toString()));
     });
-
   }
-
-
 }
