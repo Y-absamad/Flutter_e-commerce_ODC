@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_odc/core/network/dio_helper.dart';
 
 import 'feature/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized(); 
+  DioHelper.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SplashScreen();
+    return MaterialApp(
+      home: const SplashScreen(),
+    );
   }
 }
