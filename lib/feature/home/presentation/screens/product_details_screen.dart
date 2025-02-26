@@ -1,31 +1,31 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_odc/core/widgets/custom_button.dart';
+import 'package:flutter_ecommerce_odc/feature/home/presentation/widgets/product/products_listview.dart';
 
 import '../../logic/home_cubit.dart';
 import '../../data/model/product_model.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+  final List<ProductModel> allProducts;
+  const ProductDetailsScreen({super.key, required this.allProducts});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var product = context.read<HomeCubit>().product;
-
+        final ProductModel? product = context.read<HomeCubit>().product;
+    
+        if (product == null) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(),
-          body: ConditionalBuilder(
-            condition: product != null,
-            builder: (BuildContext context) =>
-                _buildProductDetails(product!, context),
-            fallback: (BuildContext context) =>
-                const Center(child: CircularProgressIndicator()),
-          ),
+          body: _buildProductDetails(product, context),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(20),
             child: CustomButton(
@@ -50,6 +50,10 @@ class ProductDetailsScreen extends StatelessWidget {
         const SizedBox(height: 16),
         _buildProductDescription(product),
         const SizedBox(height: 16),
+        SizedBox(
+          height: 300,
+          child: ProductsListView(products: context.read<HomeCubit>().getRelatedProducts(product, allProducts)),
+        )
       ],
     );
   }
@@ -88,9 +92,10 @@ class ProductDetailsScreen extends StatelessWidget {
             Text(
               "\$${product.price}",
               style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
             ),
             const SizedBox(width: 10),
           ],
@@ -147,6 +152,4 @@ class ProductDetailsScreen extends StatelessWidget {
       ],
     );
   }
-
-  
 }
