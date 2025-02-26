@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProductImageListView extends StatelessWidget {
-  const ProductImageListView({
+class ProductImageGrid extends StatelessWidget {
+  const ProductImageGrid({
     super.key,
     required this.productImageURL,
   });
@@ -13,11 +13,16 @@ class ProductImageListView extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-        child: Image.network(
-          productImageURL,
-          fit: BoxFit.fill,
-          width: double.infinity,
-          height: 180,
+        child: Stack(
+          children: [
+            Center(child: CircularProgressIndicator(),),
+            Image.network(
+              productImageURL,
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: 180,
+            ),
+          ],
         ),
       ),
     );

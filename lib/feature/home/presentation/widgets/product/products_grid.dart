@@ -17,11 +17,11 @@ class ProductsGridView extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 0.7,
+        childAspectRatio: 0.65,
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        return ProductItem(product: products[index] , isGrid: true,);
+        return ProductItem(product: products[index] , isGrid: true, relatedProducts: products,);
       },
     );
   }

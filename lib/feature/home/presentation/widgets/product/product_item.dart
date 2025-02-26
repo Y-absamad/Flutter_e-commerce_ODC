@@ -9,9 +9,10 @@ import 'product_info_section.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductModel product;
+  final List<ProductModel> relatedProducts;
   final bool isGrid;
 
-  const ProductItem({super.key, required this.product, this.isGrid = false});
+  const ProductItem({super.key, required this.product, this.isGrid = false , required this.relatedProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ProductItem extends StatelessWidget {
                 builder: (context) => BlocProvider(
                   create: (context) =>
                       HomeCubit()..getSingleProduct(product.id!),
-                  child: ProductDetailsScreen(),
+                  child: ProductDetailsScreen(allProducts: relatedProducts,),
                 ),
               ),
             );
@@ -38,8 +39,8 @@ class ProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               isGrid
-                  ? ProductImageListView(productImageURL: product.image!)
-                  : ProductImageGridView(productImageURL: product.image!),
+                  ? ProductImageGrid(productImageURL: product.image!)
+                  : ProductImageList(productImageURL: product.image!),
               ProductInfoSection(product: product),
             ],
           ),
