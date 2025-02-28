@@ -35,3 +35,9 @@ final class ProductDetailsError extends HomeState {
 
   ProductDetailsError(this.message);
 }
+class RelatedProductsLoading extends HomeState {}
+class RelatedProductsLoaded extends HomeState {}
+class RelatedProductsError extends HomeState {
+  final String message;
+  RelatedProductsError(this.message);
+}

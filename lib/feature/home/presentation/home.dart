@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_odc/feature/home/presentation/widgets/browse_screen.dart';
+import 'package:flutter_ecommerce_odc/feature/home/presentation/screens/browse_screen.dart';
 import 'package:flutter_ecommerce_odc/feature/home/presentation/screens/home_screen.dart';
 
 import '../../profile/presentation/screens/profile_screen.dart';

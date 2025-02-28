@@ -122,7 +122,8 @@ class DioHelper {
         onReceiveProgress: onReceiveProgress,
       );
       return response;
-    } catch (e) {
+    } 
+    catch (e) {
       rethrow;
     }
   }

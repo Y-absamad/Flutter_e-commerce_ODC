@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/network/dio_helper.dart';
@@ -13,8 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
   UserModel? userData;
 
   List<ProductModel> products = [];
-
-  ProductModel ? product ;
+  List<ProductModel> relatedProducts = [];
+  ProductModel? product;
 
   void getUserData() {
     emit(HomeUserLoading());
@@ -41,7 +40,6 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeProductsLoaded());
       } else {
         emit(HomeProductsError("Error"));
-
       }
     }).catchError((error) {
       //print(error.toString());
@@ -50,15 +48,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getHomeData() async {
-
     userData = null;
     products = [];
 
     emit(HomeUserLoading());
-   await DioHelper.getData(url: Endpoints.currentUserDataEndpoint).then((value) {
+    await DioHelper.getData(url: Endpoints.currentUserDataEndpoint)
+        .then((value) {
       if (value.statusCode == 200 && value.data != null) {
         userData = UserModel.fromJson(value.data);
-       // print(userData!.name);
+        // print(userData!.name);
         emit(HomeUserLoaded());
       } else {
         emit(HomeUserError("Error"));
@@ -75,13 +73,11 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeProductsLoaded());
       } else {
         emit(HomeProductsError("Error"));
-
       }
     }).catchError((error) {
       //print(error.toString());
       emit(HomeProductsError(error.toString()));
     });
-
   }
 
   void getSingleProduct(int id) {
@@ -97,5 +93,18 @@ class HomeCubit extends Cubit<HomeState> {
     }).catchError((error) {
       emit(ProductDetailsError(error.toString()));
     });
+  }
+
+  List<ProductModel> getRelatedProducts(
+      ProductModel product, List<ProductModel> allProducts) {
+    if (allProducts.isEmpty) {
+      return [];
+    }
+
+    relatedProducts = allProducts
+        .where((p) => p.category == product.category && p.id != product.id)
+        .toList();
+
+    return relatedProducts;
   }
 }

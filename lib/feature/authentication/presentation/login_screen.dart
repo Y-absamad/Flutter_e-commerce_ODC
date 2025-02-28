@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_odc/feature/home/home.dart';
+import 'package:flutter_ecommerce_odc/feature/home/presentation/home.dart';
 
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_text_input.dart';
-import '../../home/presentation/home_screen.dart';
+import '../../home/presentation/screens/home_screen.dart';
 import '../logic/auth_cubit.dart';
 import 'register_screen.dart';
 
