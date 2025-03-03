@@ -6,11 +6,11 @@ import '../screens/notifications_screen.dart';
 AppBar customAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,
-    elevation: 0,
+    shadowColor: Color(0xFFFD6C8A),
     flexibleSpace: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFFD6C8A), Color(0xFFFF9A8B)],
+          colors: [Color(0xFFFD6C8A), Color.fromARGB(255, 236, 231, 230)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

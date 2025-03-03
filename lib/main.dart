@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_odc/core/database/sql_helper.dart';
 import 'package:flutter_ecommerce_odc/core/network/dio_helper.dart';
 
+import 'feature/card/logic/cart_cubit.dart';
 import 'feature/splash_screen.dart';
+import 'feature/wishlist/logic/wishlist_cubit.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized(); 
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SQLHelper.initDb();
   DioHelper.init();
-  runApp(MyApp());
+  runApp(
+   MultiBlocProvider( 
+      providers: [
+        BlocProvider(create: (context) => CartCubit()..getCartData()),
+        BlocProvider(create: (context) => WishlistCubit()..initDatabase()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

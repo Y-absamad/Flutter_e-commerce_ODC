@@ -19,6 +19,7 @@ class ProductItem extends StatelessWidget {
     return SizedBox(
       width: isGrid ? double.infinity : 200,
       child: Card(
+        color: Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -41,7 +42,7 @@ class ProductItem extends StatelessWidget {
               isGrid
                   ? ProductImageGrid(productImageURL: product.image!)
                   : ProductImageList(productImageURL: product.image!),
-              ProductInfoSection(product: product),
+              ProductInfoSection(title: product.title!, price: product.price!,),
             ],
           ),
         ),

@@ -26,11 +26,12 @@ class BuildProductRelated extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         SizedBox(
-          height: 300,
+          height: 250,
           child: ProductsListView(
               products: context.read<HomeCubit>().getRelatedProducts(product, allProducts)),
         ),
       ],
     );
   }
+ 
 }

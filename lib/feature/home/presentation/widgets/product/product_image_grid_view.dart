@@ -23,7 +23,7 @@ class ProductImageList extends StatelessWidget {
             productImageURL,
             fit: BoxFit.fill,
             width: 190,
-            height: 195,
+            height: 155,
           ),
         ],
       ),

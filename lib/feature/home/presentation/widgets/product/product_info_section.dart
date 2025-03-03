@@ -1,15 +1,15 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../data/model/product_model.dart';
 
 class ProductInfoSection extends StatelessWidget {
   const ProductInfoSection({
     super.key,
-    required this.product,
+    required this.title, required this.price,
   });
 
-  final ProductModel product;
+  final String title;
+  final num price;
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +19,17 @@ class ProductInfoSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.title!,
+            textAlign: TextAlign.center,
+            title,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            product.description!,
-            style: const TextStyle(color: Colors.grey, fontSize: 10),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 8),
           Center(
             child: Text(
-              "\$${product.price}",
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              "\$$price",
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold , color: Colors.blueAccent),
             ),
           ),
         ],
